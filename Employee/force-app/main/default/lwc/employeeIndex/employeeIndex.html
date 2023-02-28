@@ -1,0 +1,81 @@
+<template>
+    <lightning-card title="Employee List" style="width: 100%;">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="4">
+                <lightning-input 
+                class="search-name" 
+                type="text" 
+                label="Name"
+                data-index="name"
+                onchange={searchChangeValue}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+                <lightning-input 
+                type="phone"
+                label="Phone"
+                data-index="phone"
+                onchange={searchChangeValue}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="2" class="search-button">
+                <lightning-button 
+                variant="brand" 
+                label="Search" 
+                onclick={search}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-card>
+            <lightning-button class="refresh-button" variant="brand" slot="actions" alternative-text="Refresh"
+                onclick={refreshPage} label="Refresh">
+            </lightning-button>
+            <lightning-button variant="brand" slot="actions" alternative-text="Add Employee" label="Add Employee" 
+                onclick={addEmployee}>
+            </lightning-button>
+        </lightning-card>
+        <lightning-layout class="slds-align_absolute-center">
+            <template if:true={processing}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+            <div if:true={sizeData}>
+                <lightning-datatable
+                    key-field="id" 
+                    data={rowNumbers} 
+                    columns={columns}
+                    max-row-selection="1"
+                    onrowselection={getSelectedRecord}
+                    onrowaction={callRowAction}>
+                </lightning-datatable>
+            </div>
+            <div if:false={sizeData} style="color: red; font-weight: bolder; font-size: 20px;">
+                No record
+            </div>
+        </lightning-layout>
+        <lightning-layout multiple-rows if:true={sizeData}>
+            <lightning-layout-item class="slds-align_absolute-center">
+                <c-pagination 
+                class="count-page" 
+                onprevious={previuosHandle} 
+                onnext={nextHandle}
+                dis_pre={pre}
+                dis_next={next}>
+                    <p style="margin: 5px;">Page {page}/{totalPage}</p>
+                </c-pagination>
+            </lightning-layout-item>
+            <lightning-layout-item class="total-records">
+                <p>Total Records: {totalRecord}</p>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <div class="slds-select_container select-page-size">
+                    <select class="slds-select" id="select-01" onchange={handleGetSelectedValue}>
+                      <option
+                        value={item} 
+                        for:each={listPageSize} 
+                        for:item="item" key={item}>
+                        Show {item} Item Per Page
+                        </option>
+                    </select>
+                  </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

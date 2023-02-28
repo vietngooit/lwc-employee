@@ -1,0 +1,61 @@
+<template>
+    <div>
+        <lightning-modal-header label={title}></lightning-modal-header>
+        <lightning-modal-body> 
+            <lightning-layout multiple-rows style="margin: 3px;">
+                <lightning-layout-item size="6">
+                    <lightning-input 
+                        class="slds-m-around_xx-small"
+                        type="text"
+                        label="Name"
+                        data-index="name"
+                        value={Params.name}
+                        onchange={onChangeValue}
+                        required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <lightning-input 
+                        class="slds-m-around_xx-small"
+                        type="Email" 
+                        label="Email"
+                        value={Params.email}
+                        data-index="email"
+                        onchange={onChangeValue}
+                        required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <lightning-input 
+                        class="slds-m-around_xx-small"
+                        type="Phone" 
+                        label="Phone"
+                        value={Params.phone}
+                        data-index="phone"
+                        onchange={onChangeValue}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <lightning-input 
+                        class="slds-m-around_xx-small"
+                        type="date" 
+                        value={Params.birthday}
+                        label="BirthDate"
+                        data-index="birthday"
+                        onchange={onChangeValue}
+                        required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                    <lightning-textarea 
+                        class="slds-m-around_xx-small"
+                        type="text" 
+                        label="Memo"
+                        value={Params.memo}
+                        data-index="memo"
+                        onchange={onChangeValue}></lightning-textarea>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-modal-body>
+        <lightning-modal-footer>
+            <lightning-button  class="slds-m-around_xx-small" label="Cancel" onclick={cancel}></lightning-button>
+            <lightning-button  class="slds-m-around_xx-small" variant="brand" label="Save" onclick={addEmployee}></lightning-button>
+        </lightning-modal-footer>
+    </div>
+</template>

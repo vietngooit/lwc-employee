@@ -1,0 +1,18 @@
+<template>
+    <div style="width: 50%; margin: auto">
+        <lightning-card title="Employee Detail">
+                <lightning-record-view-form record-id={recordId} object-api-name="Emp__c">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <p>Select item: {No}</p>
+                            <lightning-output-field field-name="Name__c"></lightning-output-field>
+                            <lightning-output-field field-name="Email__c"></lightning-output-field>
+                            <lightning-output-field field-name="Phone__c"></lightning-output-field>
+                            <lightning-output-field field-name="BirthDay__c"></lightning-output-field>
+                            <lightning-output-field field-name="Memo__c"></lightning-output-field>
+                        </div>
+                    </div>
+                </lightning-record-view-form>
+        </lightning-card>
+    </div>
+</template>
